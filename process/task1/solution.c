@@ -43,13 +43,8 @@ pid_t get_parent_pid(pid_t pid)
 int main(int arc, char ** argv)
 {
     pid_t pid = getpid();
-
-    int level = 0;
-    printf("%d-level PID=%d\n",level++, pid);
-
-    while ( 0 != (pid = get_parent_pid(pid)) ) {
-        printf("%d-level PID=%d\n",level++, pid);
-    } 
+    pid_t ppid = get_parent_pid(pid);
+    printf("%d\n", ppid);
 
     return 0;
 }
