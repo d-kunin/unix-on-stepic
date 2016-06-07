@@ -32,7 +32,8 @@ int main(int argc, char ** argv)
         return -1;
 
     pids_t pids[512];
-    for (int i = 0; i < 512; i++) {
+    int i;
+    for (i = 0; i < 512; i++) {
         pids[i].pid = -1;
         pids[i].ppid = -1;
     }
@@ -46,8 +47,7 @@ int main(int argc, char ** argv)
     fclose(fp);
 
     pid_t parent = atoi(argv[1]); 
-    int count = children_of(parent, pids, size); 
+    int count = 1 + children_of(parent, pids, size); 
     printf("%d\n", count);
-    printf("done!\n");
     return 0;
 }
