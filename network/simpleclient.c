@@ -16,14 +16,15 @@ int main(int argc, char** argv)
     printf("socket = %d\n", s);
 
     inet_aton("127.0.0.1", &local.sin_addr);
-    local.sin_port = htons(1234);
+    local.sin_port = htons(1234); // host to network short
     local.sin_family = AF_INET;
 
     int result = bind(s, (struct sockaddr*)&local, sizeof(local));
     printf("%d\n", result);
 
     char buf[BUFSIZ];
-    read(s, buf, BUFSIZ);
+    size_t count = read(s, buf, BUFSIZ);
+    buf[count - 1] = '\0'; // git rid of new line
     printf("%s, bye\n", buf);
 
     return EXIT_SUCCESS;
